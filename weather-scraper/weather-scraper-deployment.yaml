@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-scraper
+  template:
+    metadata:
+      labels:
+        app: weather-scraper
+    spec:
+      containers:
+      - name: weather-scraper
+        image: shellum/weather-scraper:0.9
+        resources:
+          requests:
+            memory: "700Mi"
+            cpu: "250m"
+          limits:
+            memory: "700Mi"
+            cpu: "250m"
+        env:
+          - name: DB_URL
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_URL
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_USER
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_PASSWORD
