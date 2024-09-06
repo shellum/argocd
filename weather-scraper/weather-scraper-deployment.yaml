@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: weather-scraper
-        image: shellum/weather-scraper:0.9
+        image: shellum/weather-scraper:0.91
         resources:
           requests:
             memory: "700Mi"
