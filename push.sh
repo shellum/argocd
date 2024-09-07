@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z $1 ];
+if [ -z "$1" ];
 then
     echo "Usage: push.sh <commit message>"
     exit 1
