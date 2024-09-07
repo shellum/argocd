@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jumpbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jumpbox
+  template:
+    metadata:
+      labels:
+        app: jumpbox
+    spec:
+      containers:
+      - name: jumpbox
+        image: shellum/kali:net
+        command: ["/bin/bash", "-c", "tail -f /dev/null"]
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 22
+      volumes:
+      - name: jumpbox-storage
+        emptyDir: {}
