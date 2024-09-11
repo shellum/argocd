@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-api
+  template:
+    metadata:
+      labels:
+        app: weather-api
+    spec:
+      containers:
+      - name: weather-api
+        image: shellum/weather-api:0.1
+        resources:
+          requests:
+            memory: "700Mi"
+            cpu: "250m"
+          limits:
+            memory: "700Mi"
+            cpu: "250m"
+        env:
+          - name: MYSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: weather-api-secret
+                key: MYSQL_HOST
+          - name: MYSQL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: weather-api-secret
+                key: MYSQL_PORT
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: weather-api-secret
+                key: MYSQL_USER
+          - name: MYSQL_DB
+            valueFrom:
+              secretKeyRef:
+                name: weather-api-secret
+                key: MYSQL_DB
+          - name: MYSQL_PASS
+            valueFrom:
+              secretKeyRef:
+                name: weather-api-secret
+                key: MYSQL_PASS
