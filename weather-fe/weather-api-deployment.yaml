@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-fe
+  template:
+    metadata:
+      labels:
+        app: weather-fe
+    spec:
+      containers:
+      - name: weather-fe
+        image: shellum/weather-fe:0.1
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
