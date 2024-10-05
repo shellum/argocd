@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: weather-api
-        image: shellum/weather-api:0.6
+        image: shellum/weather-api:0.7
         resources:
           requests:
             memory: "700Mi"
