@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: weather-fe
-        image: shellum/weather-fe:0.1
+        image: shellum/weather-fe:0.2
         resources:
           requests:
             memory: "256Mi"
