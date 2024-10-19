@@ -23,7 +23,7 @@ spec:
             memory: "256Mi"
             cpu: "250m"
         env:
-          - name: DB_URL
+          - name: DB_ADDR
             valueFrom:
               secretKeyRef:
                 name: weather-scraper-secret
