@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-scrape
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-scrape
+  template:
+    metadata:
+      labels:
+        app: go-scrape
+    spec:
+      containers:
+      - name: go-scrape
+        image: shellum/go-scrape:0.1
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+        env:
+          - name: DB_URL
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_ADDR
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_USER
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: weather-scraper-secret
+                key: DB_PASSWORD
+          - name: DB_NAME
+            value: weather
