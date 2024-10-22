@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: go-scrape
-        image: shellum/go-scrape:0.5.0
+        image: shellum/go-scrape:0.5.
         resources:
           requests:
             memory: "256Mi"
